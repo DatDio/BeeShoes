@@ -48,6 +48,9 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         account.setAccountRoles(signUpRequets.getRole());
         account.setPhoneNumber(signUpRequets.getPhoneNumber());
         account.setPassword(passwordEncoder.encode(signUpRequets.getPassword()));
+//        if(signUpRequets.getRole()==null){
+//            account.setAccountRoles(AccountRoles.ROLE_USER);
+//        }
         if(signUpRequets.getRole().equals(AccountRoles.ROLE_USER)){
             account.setRole(roleRepository.findByName("Khách hàng"));
         }

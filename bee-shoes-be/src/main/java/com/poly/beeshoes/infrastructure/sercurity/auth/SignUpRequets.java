@@ -26,7 +26,11 @@ public class SignUpRequets {
 //    @Pattern(regexp = "^(?=.*[0-9])(.{8,})$", message = "Mật khẩu phải có ít nhất 8 ký tự và chứa ít nhất 1 số")
     private String password;
 
-    //private AccountRoles role;
+    private AccountRoles role;
 
     private String phoneNumber;
+
+//    public AccountRoles getRole() {
+//        return AccountRoles.ROLE_USER;
+//    }
 }

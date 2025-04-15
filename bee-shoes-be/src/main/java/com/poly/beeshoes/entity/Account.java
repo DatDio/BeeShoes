@@ -34,7 +34,8 @@ import java.util.List;
 @Getter
 @Setter
 @Builder
-@ToString
+@ToString(exclude = {"role", "addresses"})
+
 
 @Entity
 @Table(name = "account")
