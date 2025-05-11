@@ -57,7 +57,11 @@ const Login = () => {
         }
       }
     } catch (error) {
-      toast.error(error.response.data)
+      if (error.response && error.response.data) {
+        toast.error(error.response.data);
+      } else {
+        toast.error("Lỗi không xác định hoặc không thể kết nối đến server");
+      }
     }
   };
   return (

@@ -63,7 +63,7 @@ public class ShoeServiceImpl implements ShoeService {
         if (shoeRepository.existsByNameIgnoreCase(request.getName())) {
             throw new RestApiException(request.getName() + " đã tồn tại!");
         }
-        if(request.getName().length() > 50){
+        if(request.getName().length() > 200){
             throw new RestApiException("Tên sản phẩm có vẻ quá dài, vui lòng thử lại!");
         }
         Shoe shoe = shoeConvert.convertRequestToEntity(request);

@@ -44,6 +44,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     @Override
     public String signUp(SignUpRequets signUpRequets) {
         Account account = new Account();
+        account.setUsername(signUpRequets.getEmail());
         account.setEmail(signUpRequets.getEmail());
         account.setAccountRoles(signUpRequets.getRole());
         account.setPhoneNumber(signUpRequets.getPhoneNumber());
@@ -56,8 +57,8 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         }
         if (accountRepository.existsByEmailAndEmailNot(signUpRequets.getEmail(), ""))
             throw new RestApiException("Email đã tồn tại!");
-        if (accountRepository.existsByPhoneNumberAndPhoneNumberNot(signUpRequets.getPhoneNumber(), ""))
-            throw new RestApiException("SDT đã tồn tại!");
+//        if (accountRepository.existsByPhoneNumberAndPhoneNumberNot(signUpRequets.getPhoneNumber(), ""))
+//            throw new RestApiException("SDT đã tồn tại!");
         accountRepository.save(account);
         String emailContent = "Chào " + signUpRequets.getEmail() + "\n" + "Bạn vừa dùng email này để đăng ký tài khoản cho hệ thống Bee Shoes Store\n" + "Tài khoản của bạn là: " + signUpRequets.getEmail() + "\n" + "Mật khẩu đăng nhập là: " + signUpRequets.getPassword() + "\n\n" + "Đây là email tự động, vui lòng không reply email này.\nCảm ơn.\n\n" + "Trang chủ BeeShoes: https://beeshoes.vunguyenhuong.id.vn\n" + "Liên hệ: https://facebook.com/VuNguyenHuong.Official";
         mailUtils.sendEmail(signUpRequets.getEmail(), "Thư xác thực tài khoản", emailContent);

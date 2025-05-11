@@ -15,11 +15,16 @@ public class MailUtils {
 
     @Async
     public CompletableFuture<String> sendEmail(String to, String subject, String body) {
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setTo(to);
-        message.setSubject(subject);
-        message.setText(body);
-        javaMailSender.send(message);
-        return CompletableFuture.completedFuture("Gửi mail thành công!");
+        try {
+            SimpleMailMessage message = new SimpleMailMessage();
+            message.setTo(to);
+            message.setSubject(subject);
+            message.setText(body);
+            javaMailSender.send(message);
+            return CompletableFuture.completedFuture("✅ Gửi mail thành công!");
+        } catch (Exception e) {
+            e.printStackTrace(); // Log lỗi ra console
+            return CompletableFuture.completedFuture("❌ Gửi mail thất bại: " + e.getMessage());
+        }
     }
 }

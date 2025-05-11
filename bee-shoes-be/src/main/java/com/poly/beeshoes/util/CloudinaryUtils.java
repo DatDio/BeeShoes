@@ -22,6 +22,11 @@ public class CloudinaryUtils {
             "api_key", "532144793489458",
             "api_secret", "ybMZlE8rrX5AYNg_-wi_C1r6g8A"));
 
+//    private Cloudinary cloudinary = new Cloudinary(ObjectUtils.asMap(
+//            "cloud_name", "beeshoess",
+//            "api_key", "992177337782475",
+//            "api_secret", "ie4onxTYa0ZvTPNuzTKf2kNZf_k"));
+
     public List<String> uploadMultipleImages(List<MultipartFile> imageFiles, String folder) {
         List<String> imageUrls = new ArrayList<>();
         for (MultipartFile imageFile : imageFiles) {

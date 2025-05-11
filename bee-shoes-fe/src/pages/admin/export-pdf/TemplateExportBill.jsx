@@ -64,7 +64,7 @@ function TemplateExportBill() {
                         <div className="">
                             <ul className="list-unstyled text-end">
                                 <li className='fw-semibold text-danger'>Sneaker BeeShoes Store</li>
-                                <li>Địa chỉ: 66 Mễ Trì Hạ, Nam Từ Liêm, Hà Nội</li>
+                                <li>Địa chỉ: 254 Vĩnh Hưng, Hoàng Mai, Hà Nội</li>
                             </ul>
                         </div>
                     </div>

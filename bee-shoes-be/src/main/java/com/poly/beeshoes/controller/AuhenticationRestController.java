@@ -8,25 +8,30 @@ import com.poly.beeshoes.infrastructure.sercurity.auth.JwtAuhenticationResponse;
 import com.poly.beeshoes.infrastructure.sercurity.auth.SignUpRequets;
 import com.poly.beeshoes.infrastructure.sercurity.auth.SigninRequest;
 import com.poly.beeshoes.service.AuthenticationService;
+import com.poly.beeshoes.util.MailUtils;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.concurrent.CompletableFuture;
 
 @RestController
 @RequestMapping("/login-v2")
 @CrossOrigin("*")
 @RequiredArgsConstructor
 public class AuhenticationRestController {
-//    ahihi đồ ngốc
-
+    //    ahihi đồ ngốc
+    @Autowired
+    private MailUtils mailUtils;
     private final AuthenticationService authenticationService;
-
+    @GetMapping("/test-mail")
+    public CompletableFuture<String> testMail() {
+        var res=  mailUtils.sendEmail("chenxiang110303@gmail.com", "Test Subject", "This is a test mail");
+        return res;
+    }
     @PostMapping("/singup")
     public String singup(@Valid @RequestBody SignUpRequets requets, BindingResult bindingResult) throws CustomListValidationException {
         if (bindingResult.hasErrors()) {
@@ -35,18 +40,18 @@ public class AuhenticationRestController {
         return authenticationService.signUp(requets);
     }
 
-        @PostMapping("/singin")
+    @PostMapping("/singin")
     public ResponseEntity<JwtAuhenticationResponse> singin(@RequestBody SigninRequest requets) {
         return ResponseEntity.ok(authenticationService.singIn(requets));
     }
 
     @PostMapping("/reset-password")
-    public ResponseEntity<?> resetPassword (@RequestBody ResetPassword resetPassword){
+    public ResponseEntity<?> resetPassword(@RequestBody ResetPassword resetPassword) {
         return ResponseEntity.ok(authenticationService.resetPassword(resetPassword));
     }
 
     @PostMapping("/change-password")
-    public ResponseObject changePassword (@RequestBody ChangePassword changePassword){
+    public ResponseObject changePassword(@RequestBody ChangePassword changePassword) {
         return new ResponseObject(authenticationService.changePassword(changePassword));
     }
 

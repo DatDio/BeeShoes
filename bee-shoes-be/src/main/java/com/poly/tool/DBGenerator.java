@@ -165,16 +165,16 @@ public class DBGenerator implements CommandLineRunner {
 
         // Account
         Account nhanVien1 = new Account();
-        nhanVien1.setName("Vũ Nguyên Hướng");
+        nhanVien1.setName("Phạm Tiến Đạt");
         nhanVien1.setBirthday(new Date(99, 3, 16));
         nhanVien1.setAvatar("https://res.cloudinary.com/beeshoes/image/upload/v1702806762/account/logovippro_s4fuam.jpg");
         nhanVien1.setCccd("535834053750");
-        nhanVien1.setEmail("admin@fpt.edu.vn");
-        nhanVien1.setAccountRoles(AccountRoles.ROLE_EMLOYEE);
-        nhanVien1.setGender("Nữ");
-        nhanVien1.setPassword(new BCryptPasswordEncoder().encode("123456"));
+        nhanVien1.setEmail("datgt1103@gmail.com");
+        nhanVien1.setAccountRoles(AccountRoles.ROLE_ADMIN);
+        nhanVien1.setGender("Nam");
+        nhanVien1.setPassword(new BCryptPasswordEncoder().encode("Pain1103@@"));
         nhanVien1.setPhoneNumber("0395080515");
-        nhanVien1.setUsername("Hangnt169");
+        nhanVien1.setUsername("datdio");
         nhanVien1.setRole(nhanVien);
         nhanVien1.setId(accountRepository.save(nhanVien1).getId());
 

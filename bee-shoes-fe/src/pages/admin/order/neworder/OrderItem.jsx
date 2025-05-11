@@ -426,7 +426,7 @@ function OrderItem({ index, props, onSuccess }) {
           <ShowProductModal idBill={props.id} onClose={() => { loadListOrderDetail() }} />
         </div>
         <div className="">
-          <QrCode title={"QR Code sản phẩm"} onQrSuccess={onSelect} />
+          {/* <QrCode title={"QR Code sản phẩm"} onQrSuccess={onSelect} /> */}
         </div>
       </div>
       <div style={{ boxShadow: "2px 2px 4px 4px rgba(0, 0, 0, 0.03)" }} className="my-3 p-2">
@@ -640,14 +640,14 @@ function OrderItem({ index, props, onSuccess }) {
                       <span className="ms-2 fw-semibold text-dark">Chuyển khoản</span>
                     </div>
                   </Col>
-                  <Col xl={24} onClick={() => setPaymentMethod(2)}>
+                  {/* <Col xl={24} onClick={() => setPaymentMethod(2)}>
                     <div className={`py-2 mt-2 border border-2 rounded-2 d-flex align-items-center justify-content-center ${paymentMethod === 2 && 'border-warning text-warning'}`}>
                       <i className="fa-solid fa-coins" style={{ fontSize: "36px" }}></i>
                       <span className="ms-2 fw-semibold text-dark">Tiền mặt & </span>
                       <img src="https://vnpay.vn/s1/statics.vnpay.vn/2023/9/06ncktiwd6dc1694418196384.png" alt="" style={{ width: "36px" }} />
                       <span className="ms-2 fw-semibold text-dark">Chuyển khoản</span>
                     </div>
-                  </Col>
+                  </Col> */}
                 </Row>
               </li>
               <li className="mb-2">
