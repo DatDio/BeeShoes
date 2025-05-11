@@ -33,7 +33,11 @@ function CustomerInfo({ handleSelect }) {
 
   const [previewUrl, setPreviewUrl] = useState(null);
   const [avatar, setAvatar] = useState(null);
-  const [dataAddress, setDataAddress] = useState(null);
+ const [dataAddress, setDataAddress] = useState({
+  ward: '',
+  district: '',
+  province: ''
+});
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -58,7 +62,12 @@ function CustomerInfo({ handleSelect }) {
   const onClose = () => {
     setOpen(false);
   };
-
+useEffect(() => {
+  if (!dataAddress) {
+    return; // Thoát nếu dataAddress chưa có giá trị
+  }
+  // ... xử lý tiếp theo
+}, [dataAddress]);
   
   useEffect(() => {
     loadCustomer("");
@@ -101,7 +110,10 @@ function CustomerInfo({ handleSelect }) {
   };
 
   const handleAddCustomer = (data) => {
-    
+     if (!dataAddress) {
+    toast.error("Vui lòng chọn địa chỉ!");
+    return;
+  }
       const formData = new FormData();
       formData.append("avatar", avatar);
       formData.append("address.name", data.name);
@@ -148,34 +160,32 @@ function CustomerInfo({ handleSelect }) {
     <>
       <div className="d-flex">
         <div className="flex-grow-1 me-1">
-          <AutoComplete
-            value={searchValue}
-            onChange={handleSearch}
-            onSelect={onSelect}
-            style={{ width: "300px" }}
-            options={customerData.map((customer) => ({
-              value: customer.id,
-              label: (
-                <>
-                  <div className="d-flex">
-                    <Avatar
-                      src={`${customer.avatar}`}
-                      shape="circle"
-                      size={"default"}
-                      className="me-2"
-                    />
-                    <div className="">
-                      {customer.name} - {customer.gender}
-                      <br />
-                      {customer.phoneNumber}
-                    </div>
-                  </div>
-                </>
-              ),
-            }))}
-          >
-            <Input.Search placeholder="Tìm kiếm khách hàng..." />
-          </AutoComplete>
+         <AutoComplete
+  value={searchValue}
+  onChange={handleSearch}
+  onSelect={onSelect}
+  style={{ width: "300px" }}
+  options={customerData.map((customer) => ({
+    value: customer.id,
+    label: (
+      <div className="d-flex align-items-center">
+        <Avatar
+          src={customer?.avatar || ''}  // Thêm điều kiện kiểm tra null
+          shape="circle"
+          size="default"
+          className="me-2"
+        />
+        <div>
+          {customer?.name || 'N/A'} - {customer?.gender || 'N/A'}
+          <br />
+          {customer?.phoneNumber || 'N/A'}
+        </div>
+      </div>
+    )
+  }))}
+>
+  <Input.Search placeholder="Tìm kiếm khách hàng..." />
+</AutoComplete>
         </div>
         <div className="">
           <Button
@@ -339,7 +349,11 @@ function CustomerInfo({ handleSelect }) {
                   <Input placeholder="Nhập địa chỉ cụ thể ..." />
                 </Form.Item>
               </Col>
-              <GHNInfo dataAddress={setDataAddress} />
+<GHNInfo dataAddress={(address) => {
+  if (address) {
+    setDataAddress(address);
+  }
+}} />
             </Row>
             <Form.Item className="mt-3 float-end">
               <Button type="primary" htmlType="submit" className="bg-warning">
