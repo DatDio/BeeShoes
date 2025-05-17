@@ -280,7 +280,7 @@ function UpdateShoeDetail({ props, onSuccess }) {
                             </Form.Item>
                         </Col>
                         <Col xl={6}>
-                            <QRCode value={props.code} />
+                            {/* <QRCode value={props.code} /> */}
                         </Col>
                         <Col xl={18}>
                             Hình ảnh sản phẩm:

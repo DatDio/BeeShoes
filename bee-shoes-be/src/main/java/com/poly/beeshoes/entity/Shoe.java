@@ -46,6 +46,6 @@ public class Shoe extends PrimaryEntity {
     @OneToMany(mappedBy = "shoe")
     List<ShoeDetail> shoeDetails;
 
-    @Column(name = "description")
+    @Column(name = "description", columnDefinition = "TEXT")
     private String description;
 }

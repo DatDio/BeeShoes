@@ -24,14 +24,17 @@ public class BillController {
 
     @GetMapping
     public PageableObject getAll(BillSearchRequest request) {
+
         return billService.getAll(request);
     }
 
+    //Lấy bill ở trang tạo hóa đơn
     @GetMapping ("/new-bill")
     public List<Bill> getNewBill(BillSearchRequest request){
         return billService.getNewBill(request);
     }
 
+    //Đếm số lượng đơn cho trang danh sách hóa đơn
     @GetMapping("/statistic-bill-status")
     public List<StatisticBillStatus> statisticBillStatus() {
         return billService.statisticBillStatus();

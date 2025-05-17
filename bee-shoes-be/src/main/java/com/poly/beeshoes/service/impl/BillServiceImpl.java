@@ -117,6 +117,7 @@ public class BillServiceImpl implements BillService {
         return billSave;
     }
 
+    //Tạo đơn hàng taij quầy
     @Override
     public Bill orderBill(Long id, BillRequest request) {
         if (request.getVoucher() != null) {
@@ -174,7 +175,8 @@ public class BillServiceImpl implements BillService {
             }
             history.setNote("Mua hàng thành công!");
             history.setStatus(BillStatusConstant.HOAN_THANH);
-        } else if (request.getType() == TyperOrderConstant.GIAO_HANG) {
+        }
+        else if (request.getType() == TyperOrderConstant.GIAO_HANG) {
             bill.setStatus(BillStatusConstant.CHO_GIAO);
             history.setStatus(BillStatusConstant.CHO_GIAO);
             history.setNote("Chờ giao");
@@ -197,6 +199,7 @@ public class BillServiceImpl implements BillService {
                 paymentMethodRepository.save(paymentMethod);
             }
         }
+
         billHistoryRepository.save(history);
         billRepository.save(bill);
         if (bill.getCustomer() != null) {
@@ -233,6 +236,7 @@ public class BillServiceImpl implements BillService {
         bill.setStatus(BillStatusConstant.CHO_XAC_NHAN);
         bill.setCode(this.genBillCode());
         bill.setType(TyperOrderConstant.GIAO_HANG);
+        bill.setEmail(request.getEmail());
         bill.setNote(request.getNote());
         bill.setPhoneNumber(request.getPhoneNumber());
         bill.setCustomerName(request.getCustomerName());

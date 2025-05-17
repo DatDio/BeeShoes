@@ -38,6 +38,7 @@ public class ImagesController {
 
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id){
+
         imagesRepository.deleteById(id);
     }
 }

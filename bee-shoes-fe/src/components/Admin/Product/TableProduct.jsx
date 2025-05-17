@@ -135,7 +135,7 @@ function TableProduct({ props, handleChange }) {
                       <td>Sản phẩm</td>
                       <td>Số lượng</td>
                       <td>Đơn giá</td>
-                      <td>Cân nặng</td>
+                      <td>Cân nặng (gram)</td>
                       <td>Danh mục</td>
                       <td>Thương hiệu</td>
                       <td></td>

@@ -21,11 +21,13 @@ public class PaymentMethodControllerClient {
     private PaymentMethodService service;
     @GetMapping("/{id}")
     public List<PaymentMethodResponse> getAll(@PathVariable Long id){
+
         return service.getByBill(id);
     }
 
     @PostMapping
     public ResponseObject create(@RequestBody PaymentMethodRequest request){
+
         return service.create(request);
     }
 }

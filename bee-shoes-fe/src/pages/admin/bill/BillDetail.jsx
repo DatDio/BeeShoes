@@ -394,7 +394,7 @@ const BillDetail = () => {
         ) : ""}
       </div>
       <Table dataSource={listBillDetail} columns={columns}
-        showHeader={false}
+        showHeader={true}
         rowClassName={(record) => (record.status === true ? "bg-danger-subtle" : "")}
         pagination={{
           showSizeChanger: true,
@@ -409,9 +409,82 @@ const BillDetail = () => {
           },
         }} />
 
-      <Modal title="Nhập ghi chú" open={isModalOpen} onCancel={handleCancel} footer={<Button form="formNote" type="primary" htmlType="submit">Xác nhận</Button>}>
+      <Modal
+  title="Nhập ghi chú"
+  open={isModalOpen}
+  onCancel={handleCancel}
+  footer={
+    <Button form="formNote" type="primary" htmlType="submit">
+      Xác nhận
+    </Button>
+  }
+>
+  <p>
+    <span className="text-danger">*</span>Chọn mẫu tin nhắn:
+  </p>
+
+  {(() => {
+    const radioOptions = [
+      { status: 2, value: "Đã xác nhận đơn hàng" },
+      { status: 4, value: "Đã bàn giao cho đơn vị vận chuyển" },
+      { status: 5, value: "Đã xác nhận thông tin thanh toán" },
+      { status: 6, value: "Đơn hàng đã được giao thành công" },
+      { status: 7, value: "Đã hủy đơn hàng" },
+      { status: -1, value: "" }, // Khác
+    ];
+
+    const availableOptions = radioOptions.filter((item) => {
+      if (item.status === -1 || item.status === 7) return true; // luôn cho phép "Khác"
+
+      if (bill.status === 5) {
+        return item.status === 6; // Nếu status = 5 thì chỉ hiện "Đơn hàng đã được giao thành công"
+      }
+      return item.status === bill.status;
+    });
+
+    return (
+      <Radio.Group
+        className="mb-3"
+        onChange={(e) => {
+          form.setFieldsValue({ note: e.target.value });
+        }}
+        onCancel={handleCancel} 
+      >
+        <Space direction="vertical">
+          {availableOptions.map((item, index) => (
+            <Radio key={index} value={item.value}>
+              {item.value === "" ? "Khác" : item.value}
+            </Radio>
+            
+          ))}
+        </Space>
+      </Radio.Group>
+    );
+  })()}
+
+  <Form
+    id="formNote"
+    onFinish={(data) => handleSubmit(data)}
+    form={form}
+  >
+    <Form.Item
+      name="note"
+      rules={[{ required: true, message: "Ghi chú không được để trống!" }]}
+    >
+      <TextArea placeholder="Nhập ghi chú..." />
+    </Form.Item>
+  </Form>
+</Modal>
+
+
+      {/* <Modal title="Nhập ghi chú" open={isModalOpen} 
+      onCancel={handleCancel} 
+      footer={<Button form="formNote" 
+      type="primary" 
+      htmlType="submit">Xác nhận</Button>}>
         <p><span className="text-danger">*</span>Chọn mẫu tin nhắn:</p>
-        <Radio.Group className="mb-3" onChange={(e) => { form.setFieldsValue({ note: e.target.value }) }}>
+        <Radio.Group className="mb-3" 
+        onChange={(e) => { form.setFieldsValue({ note: e.target.value }) }}>
           <Space direction="vertical">
             <Radio value={'Đã xác nhận đơn hàng'}>Đã xác nhận đơn hàng</Radio>
             <Radio value={'Đã bàn giao cho đơn vị vận chuyển'}>Đã bàn giao cho đơn vị vận chuyển</Radio>
@@ -426,7 +499,7 @@ const BillDetail = () => {
             <TextArea placeholder="Nhập ghi chú..." />
           </Form.Item>
         </Form>
-      </Modal>
+      </Modal> */}
     </>
   );
 };
