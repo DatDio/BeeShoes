@@ -31,7 +31,8 @@ const Address = () => {
   const fetchProvinces = async () => {
     try {
       const response = await axios.get(
-        "https://dev-online-gateway.ghn.vn/shiip/public-api/master-data/province",
+        // "https://dev-online-gateway.ghn.vn/shiip/public-api/master-data/province",
+         "https://online-gateway.ghn.vn/shiip/public-api/master-data/province",
         configApi
       );
       setProvinces(response?.data?.data);
@@ -43,7 +44,8 @@ const Address = () => {
   const fetchDistrictsByProvince = async (provinceId: number) => {
     try {
       const response = await axios.get(
-        `https://dev-online-gateway.ghn.vn/shiip/public-api/master-data/district?province_id=${provinceId}`,
+        //`https://dev-online-gateway.ghn.vn/shiip/public-api/master-data/district?province_id=${provinceId}`,
+        `https://online-gateway.ghn.vn/shiip/public-api/master-data/district?province_id=${provinceId}`,
         configApi
       );
       setDistricts(response?.data?.data);
@@ -55,7 +57,8 @@ const Address = () => {
   const fetchWardsByDistrict = async (districtId: number) => {
     try {
       const response = await axios.get(
-        `https://dev-online-gateway.ghn.vn/shiip/public-api/master-data/ward?district_id=${districtId}`,
+        //`https://dev-online-gateway.ghn.vn/shiip/public-api/master-data/ward?district_id=${districtId}`,
+        `https://online-gateway.ghn.vn/shiip/public-api/master-data/ward?district_id=${districtId}`,
         configApi
       );
       setWards(response.data.data);

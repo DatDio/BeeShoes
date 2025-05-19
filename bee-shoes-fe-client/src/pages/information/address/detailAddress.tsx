@@ -39,20 +39,21 @@ function DetailAddress({ prov, distr, war, spec }: AddressProps) {
     const fetchData = async () => {
       try {
         const provinceResponse: AxiosResponse = await axios.get(
-          "https://dev-online-gateway.ghn.vn/shiip/public-api/master-data/province",
+          "https://online-gateway.ghn.vn/shiip/public-api/master-data/province",
           configApi
         );
         console.log("provinceResponse", provinceResponse);
 
         const districtResponse: AxiosResponse = await axios.get(
-          `https://dev-online-gateway.ghn.vn/shiip/public-api/master-data/district?province_id=${prov}`,
+          // `https://dev-online-gateway.ghn.vn/shiip/public-api/master-data/district?province_id=${prov}`,
+             `https://online-gateway.ghn.vn/shiip/public-api/master-data/district?province_id=${prov}`,
           configApi
         );
 
         console.log("districtResponse", districtResponse);
 
         const wardResponse: AxiosResponse = await axios.get(
-          `https://dev-online-gateway.ghn.vn/shiip/public-api/master-data/ward?district_id=${distr}`,
+          `https://online-gateway.ghn.vn/shiip/public-api/master-data/ward?district_id=${distr}`,
           configApi
         );
 

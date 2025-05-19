@@ -79,7 +79,7 @@ const PayMentWithUser = () => {
   const fetchProvinces = async () => {
     try {
       const response = await axios.get(
-        "https://dev-online-gateway.ghn.vn/shiip/public-api/master-data/province",
+        "https://online-gateway.ghn.vn/shiip/public-api/master-data/province",
         configApi
       );
       if (response.status) {
@@ -92,7 +92,7 @@ const PayMentWithUser = () => {
   const fetchDistrictsByProvince = async (provinceId: number) => {
     try {
       const response = await axios.get(
-        `https://dev-online-gateway.ghn.vn/shiip/public-api/master-data/district?province_id=${provinceId}`,
+        `https://online-gateway.ghn.vn/shiip/public-api/master-data/district?province_id=${provinceId}`,
         configApi
       );
       if (response.status) {
@@ -105,7 +105,7 @@ const PayMentWithUser = () => {
   const fetchWardsByDistrict = async (districtId: number) => {
     try {
       const response = await axios.get(
-        `https://dev-online-gateway.ghn.vn/shiip/public-api/master-data/ward?district_id=${districtId}`,
+        `https://online-gateway.ghn.vn/shiip/public-api/master-data/ward?district_id=${districtId}`,
         configApi
       );
       if (response.status) {
@@ -142,7 +142,7 @@ const PayMentWithUser = () => {
     if (!!dataAddress && dataAddress.length > 0) {
       try {
         const response = await axios.post(
-          "https://dev-online-gateway.ghn.vn/shiip/public-api/v2/shipping-order/fee",
+          "https://online-gateway.ghn.vn/shiip/public-api/v2/shipping-order/fee",
           {
             //service_id: 53320,
             service_type_id: 2,
@@ -158,9 +158,9 @@ const PayMentWithUser = () => {
           },
           {
             headers: {
-              Token: "aef361b5-f26a-11ed-bc91-ba0234fcde32",
+              Token: "c6004319-3410-11f0-9dc8-ea089d84dbad",
               "Content-Type": "application/json",
-              ShopId: 124173,
+              ShopId: 5783837,
             },
           }
         );

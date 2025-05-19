@@ -69,12 +69,14 @@ public class PromotionServiceImpl implements PromotionService {
             throw new RestApiException("Ngày bắt đầu phải từ ngày hiện tại trở đi.");
         }
         Promotion promotionSave = promotionRepository.save(promotionConvert.convertRequestToEntity(request));
+        //Lưu vào promoteDetail các shoeDetail
         for (Long x: request.getProductDetails()) {
             PromotionDetail check = promotionDetailRepository.findByShoeDetailId(x);
             if(check != null) {
                 promotionDetailRepository.delete(check);
             }
         }
+
         for (Long x: request.getProductDetails()) {
             ShoeDetail shoeDetail = shoeDetailRepository.findById(x).get();
             PromotionDetail promotionDetail = new PromotionDetail();

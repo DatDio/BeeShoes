@@ -107,7 +107,7 @@ function AddStaff() {
           />
         </div>
         <div className="">
-          <QrCode title={"Quét CCCD"} onQrSuccess={handleQrSuccess} />
+          {/* <QrCode title={"Quét CCCD"} onQrSuccess={handleQrSuccess} /> */}
         </div>
       </div>
       <Form onFinish={handleAddStaff} layout="vertical" form={form}>

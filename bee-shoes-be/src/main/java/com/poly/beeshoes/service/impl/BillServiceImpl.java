@@ -159,20 +159,21 @@ public class BillServiceImpl implements BillService {
                 paymentMethod.setTradingCode(request.getTradingCode());
                 paymentMethod.setMethod(PaymentMethodConstant.CHUYEN_KHOAN);
                 paymentMethodRepository.save(paymentMethod);
-            } else if (request.getPaymentMethod() == PaymentMethodConstant.TIEN_MAT_VA_CHUYEN_KHOAN) {
-                PaymentMethod paymentMethod1 = new PaymentMethod();
-                paymentMethod1.setBill(bill);
-                paymentMethod1.setTotalMoney(request.getTienMat());
-                paymentMethod1.setNote("Đã thanh toán!");
-                paymentMethod1.setMethod(PaymentMethodConstant.TIEN_MAT);
-                paymentMethod1.setType(PaymentMethodConstant.TIEN_KHACH_DUA);
-                paymentMethodRepository.save(paymentMethod1);
-                paymentMethod.setTotalMoney(request.getTienChuyenKhoan());
-                paymentMethod.setTradingCode(request.getTradingCode());
-                paymentMethod.setNote("Đã chuyển khoản!");
-                paymentMethod.setMethod(PaymentMethodConstant.CHUYEN_KHOAN);
-                paymentMethodRepository.save(paymentMethod);
             }
+//            else if (request.getPaymentMethod() == PaymentMethodConstant.TIEN_MAT_VA_CHUYEN_KHOAN) {
+//                PaymentMethod paymentMethod1 = new PaymentMethod();
+//                paymentMethod1.setBill(bill);
+//                paymentMethod1.setTotalMoney(request.getTienMat());
+//                paymentMethod1.setNote("Đã thanh toán!");
+//                paymentMethod1.setMethod(PaymentMethodConstant.TIEN_MAT);
+//                paymentMethod1.setType(PaymentMethodConstant.TIEN_KHACH_DUA);
+//                paymentMethodRepository.save(paymentMethod1);
+//                paymentMethod.setTotalMoney(request.getTienChuyenKhoan());
+//                paymentMethod.setTradingCode(request.getTradingCode());
+//                paymentMethod.setNote("Đã chuyển khoản!");
+//                paymentMethod.setMethod(PaymentMethodConstant.CHUYEN_KHOAN);
+//                paymentMethodRepository.save(paymentMethod);
+//            }
             history.setNote("Mua hàng thành công!");
             history.setStatus(BillStatusConstant.HOAN_THANH);
         }

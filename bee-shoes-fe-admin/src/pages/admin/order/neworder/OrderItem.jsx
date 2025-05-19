@@ -653,9 +653,9 @@ function OrderItem({ index, props, onSuccess }) {
               <li className="mb-2">
                 <TextArea placeholder="Nhập ghi chú..." onChange={(e) => setNote(e.target.value)} />
               </li>
-              <li className="mb-2 float-end">
+              {/* <li className="mb-2 float-end">
                 <Switch onChange={(value) => setWaitPay(value)} /> Chờ thanh toán
-              </li>
+              </li> */}
               <li>
                 <Button type="primary" className="bg-warning text-dark w-100" onClick={() => handleCreate()}>Tạo hóa đơn</Button>
               </li>

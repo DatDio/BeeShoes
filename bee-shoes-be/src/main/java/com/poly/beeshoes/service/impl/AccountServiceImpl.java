@@ -47,7 +47,11 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public Account getOne(Long id, String roleName) {
-        return accountRepository.getOne(id, roleName);
+        var account = accountRepository.getOne(id, roleName);
+        if(account == null){
+            return accountRepository.getOne(id, "Admin");
+        }
+       return account;
     }
 
     @Override
